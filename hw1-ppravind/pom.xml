@@ -41,7 +41,7 @@
               <goal>perform</goal>
             </goals>
             <configuration>
-              <pomFileName>hw1-ppravind/pom.xml</pomFileName>
+              <pomFileName>hw1-sjauhar/pom.xml</pomFileName>
             </configuration>
           </execution>
         </executions>
@@ -104,5 +104,10 @@
       <artifactId>stanford-postag-models</artifactId>
       <version>1.3.2</version>
     </dependency>
-  </dependencies>
+    <dependency>
+    	<groupId>com.aliasi</groupId>
+    	<artifactId>lingpipe</artifactId>
+    	<version>4.1.0</version>
+    </dependency>
+  </dependencies>  
 </project>
