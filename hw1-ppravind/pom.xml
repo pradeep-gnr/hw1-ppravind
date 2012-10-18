@@ -5,8 +5,8 @@
   <artifactId>hw1-ppravind</artifactId>
   <version>0.0.4</version>
   <scm>	
-    <connection>scm:git:git@github.com:pradeep-gnr/hw0-ppravind.git</connection>
-	<developerConnection>scm:git:git@github.com:pradeep-gnr/hw0-ppravind.git</developerConnection>
+    <connection>scm:git:git@github.com:pradeep-gnr/hw1-ppravind.git</connection>
+	<developerConnection>scm:git:git@github.com:pradeep-gnr/hw1-ppravind.git</developerConnection>
   </scm>
 
   <repositories>
