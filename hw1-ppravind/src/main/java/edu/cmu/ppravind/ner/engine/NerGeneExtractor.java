@@ -24,6 +24,9 @@ public class NerGeneExtractor extends JCasAnnotator_ImplBase {
 	
 	public void initialize(UimaContext aContext) 
 	        throws ResourceInitializationException {
+		/*
+		 * Initialize with all necessary parameters for NER Extraction
+		 */
 	  super.initialize(aContext);
 	  File modelFile = new File ("src/main/resources/ner/models/ne-en-bio-genetag.HmmChunker");
 	 	  
@@ -83,11 +86,7 @@ public class NerGeneExtractor extends JCasAnnotator_ImplBase {
 		
 		Chunking chunking = this.getNamedEntities(text);
 		
-		String chunkingOutput = chunking.chunkSet().toString();
-		
-				
-				
-		
+		String chunkingOutput = chunking.chunkSet().toString();	
 		
 		// Initialize Variable
 		String pattern = "(\\d*-\\d*):GENE@-Infinity";			
@@ -103,9 +102,25 @@ public class NerGeneExtractor extends JCasAnnotator_ImplBase {
 			int pos1 = Integer.parseInt(matcher.group().split(":")[0].split("-")[0]);
 			int pos2 = Integer.parseInt(matcher.group().split(":")[0].split("-")[1]);
 			
+			// Remove Spaces and Search again
+			String tmp_string = text.substring(pos1,pos2);
+			tmp_string = tmp_string.replaceAll("\\s","");
+			
+			
+			// Remove Spaces from Text also
+			
+			String tmptext = text;
+			tmptext = tmptext.replaceAll("\\s","");
+			
+			
+			// Get First match of pattern in String
+			
+			int first_index = tmptext.indexOf(tmp_string);
+			int last_index = first_index + tmp_string.length()-1;		
+			
 			// Set Annotation 
-			annotation.setBegin(curOff + pos1);
-			annotation.setEnd(curOff + pos2);			
+			annotation.setBegin(curOff + first_index);
+			annotation.setEnd(curOff + last_index);			
 			annotation.setDocumentID(docId);
 			annotation.setGeneName(text.substring(pos1,pos2));
 			annotation.setSubText(text);

@@ -3,7 +3,12 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>edu.cmu.lti.11791.f12.hw1</groupId>
   <artifactId>hw1-ppravind</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.3-SNAPSHOT</version>
+  <scm>	
+    <connection>scm:git:git@github.com:pradeep-gnr/hw0-ppravind.git</connection>
+	<developerConnection>scm:git:git@github.com:pradeep-gnr/hw0-ppravind.git</developerConnection>
+  </scm>
+
   <repositories>
     <repository>
       <id>oaqa</id>
@@ -41,7 +46,7 @@
               <goal>perform</goal>
             </goals>
             <configuration>
-              <pomFileName>hw1-sjauhar/pom.xml</pomFileName>
+              <pomFileName>hw1-ppravind/pom.xml</pomFileName>
             </configuration>
           </execution>
         </executions>

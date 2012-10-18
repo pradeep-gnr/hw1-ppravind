@@ -24,8 +24,10 @@ public class OutputFileProcessor extends CasConsumer_ImplBase {
 	
 	public void initialize() {
 		
-		// Initialize the OutPut File
-		//OutputFile = new File ((String) getConfigParameterValue("OutputFile"));		
+		 /*
+		 Initialize with all parameters for Consuming the CAS and writing to required Output File		 
+		 */
+				
 		try {
 			out = new BufferedWriter(new FileWriter((String) getConfigParameterValue("OutputFile")));
 		} catch (IOException e) {
@@ -40,7 +42,7 @@ public class OutputFileProcessor extends CasConsumer_ImplBase {
 		// TODO Auto-generated method stub		
 		
 		/*
-		 * Do Post Processing of the text. Reads from CAS, and writes in the output format requi
+		 * Do Post Processing of the text. Reads from CAS, and writes in the reqiured Output Format.
 		 * 
 		 */			 
 		  try {		   
@@ -62,8 +64,7 @@ public class OutputFileProcessor extends CasConsumer_ImplBase {
 		      
 		      // Write all the Strings in the OutPut File
 		      
-		      String opString = docId+"|"+startOffset+" "+endOffset+"|"+geneName+"\n";
-		      System.out.println(opString);
+		      String opString = docId+"|"+startOffset+" "+endOffset+"|"+geneName+"\n";		      
 		      
 		     
 		    // Write O/P to File  

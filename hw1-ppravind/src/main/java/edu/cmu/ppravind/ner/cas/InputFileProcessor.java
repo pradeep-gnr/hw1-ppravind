@@ -20,8 +20,9 @@ public class InputFileProcessor extends CollectionReader_ImplBase {
 	boolean file_read= false;
 	
 	public void initialize() throws ResourceInitializationException {
-		// Initialize the Input Directory
-		// Initialize File Path
+		/* Initialize the Input Directory
+		 Initialize File Path
+		 */
 		System.out.println("Input String Initialized");
 		inputFile = (String) getConfigParameterValue("InputFile");	
 		
