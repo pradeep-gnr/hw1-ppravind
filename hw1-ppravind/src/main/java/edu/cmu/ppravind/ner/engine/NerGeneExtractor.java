@@ -25,10 +25,11 @@ public class NerGeneExtractor extends JCasAnnotator_ImplBase {
 	public Chunker chunker;
 	private File tempFile;  
 	
-	private void init(InputStream in) throws IOException {  
+	private void initFile(InputStream in) throws IOException {  
 		   
         tempFile = File.createTempFile("tempFile", ".tmp");  
         tempFile.deleteOnExit();  
+        System.out.println("Input File  "+in);
    
         FileOutputStream fout = null;  
    
@@ -37,7 +38,7 @@ public class NerGeneExtractor extends JCasAnnotator_ImplBase {
             fout = new FileOutputStream(tempFile);  
             int c;  
    
-            while ((c = in.read()) != -1) {  
+            while ((c = in.read()) != -1) {            	
                 fout.write(c);  
             }  
    
@@ -66,7 +67,7 @@ public class NerGeneExtractor extends JCasAnnotator_ImplBase {
               .getResourceAsStream("ne-en-bio-genetag.HmmChunker");
 	 	  
 	  try{	  		
-		  this.init(in);
+		  this.initFile(in);
 		 this.chunker = (Chunker) AbstractExternalizable.readObject(this.getTempFile());
 	  }  
 	 catch (IOException e) {
