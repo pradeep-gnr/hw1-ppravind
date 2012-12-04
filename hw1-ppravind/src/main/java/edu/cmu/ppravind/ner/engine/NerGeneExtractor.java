@@ -17,10 +17,43 @@ import java.util.regex.Pattern;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.io.InputStream;
+import java.io.FileOutputStream;
 
 public class NerGeneExtractor extends JCasAnnotator_ImplBase {
 	
 	public Chunker chunker;
+	private File tempFile;  
+	
+	private void init(InputStream in) throws IOException {  
+		   
+        tempFile = File.createTempFile("tempFile", ".tmp");  
+        tempFile.deleteOnExit();  
+   
+        FileOutputStream fout = null;  
+   
+        try {  
+   
+            fout = new FileOutputStream(tempFile);  
+            int c;  
+   
+            while ((c = in.read()) != -1) {  
+                fout.write(c);  
+            }  
+   
+        }finally {  
+            if (in != null) {  
+                in.close();  
+            }  
+            if (fout != null) {  
+                fout.close();  
+            }  
+        }  
+    }  
+   
+	public File getTempFile() {  
+        return tempFile;  
+    }  
 	
 	public void initialize(UimaContext aContext) 
 	        throws ResourceInitializationException {
@@ -28,10 +61,13 @@ public class NerGeneExtractor extends JCasAnnotator_ImplBase {
 		 * Initialize with all necessary parameters for NER Extraction
 		 */
 	  super.initialize(aContext);
-	  File modelFile = new File ("src/main/resources/ner/models/ne-en-bio-genetag.HmmChunker");
+	  //File modelFile = new File ("");
+	  InputStream in = this.getClass().getClassLoader()
+              .getResourceAsStream("ne-en-bio-genetag.HmmChunker");
 	 	  
-	  try{	  		  
-		 this.chunker = (Chunker) AbstractExternalizable.readObject(modelFile);
+	  try{	  		
+		  this.init(in);
+		 this.chunker = (Chunker) AbstractExternalizable.readObject(this.getTempFile());
 	  }  
 	 catch (IOException e) {
 		// TODO Auto-generated catch block
